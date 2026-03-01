@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pittsburgh Boot Camp 2026 – Event Details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #080808;
+      --surface:  #111111;
+      --border:   #222222;
+      --platinum: #c8c8d0;
+      --gold:     #e8b84b;
+      --blue:     #4f8ef7;
+      --text:     #f0f0f0;
+      --muted:    #888888;
+    }
+
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .btn {
+      display: inline-block;
+      padding: 16px 36px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: opacity .15s;
+      text-align: center;
+    }
+    .btn:hover { opacity: .88; }
+    .btn-primary { background: var(--gold); color: #000; }
+    .btn-outline { border: 2px solid var(--platinum); color: var(--platinum); }
+    .tag {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 99px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+    }
+    nav .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav .logo {
+      font-weight: 900;
+      font-size: 1rem;
+      letter-spacing: -.01em;
+    }
+    nav .logo span { color: var(--gold); }
+    nav a.nav-cta {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 8px 18px;
+      border-radius: 6px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 90px 0 70px;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, #0d1a2e 0%, var(--bg) 70%);
+      text-align: center;
+    }
+    .hero .tag {
+      background: rgba(79,142,247,.12);
+      color: var(--blue);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero .meta {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .hero .meta-item {
+      text-align: center;
+    }
+    .hero .meta-item .label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero .meta-item .value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .hero .note {
+      font-size: .9rem;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    section { padding: 72px 0; }
+    section + section { border-top: 1px solid var(--border); }
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      margin-bottom: 14px;
+    }
+    .lead { font-size: 1.05rem; color: var(--muted); max-width: 580px; margin-bottom: 44px; }
+
+    /* ── SCHEDULE ── */
+    .day-block { margin-bottom: 56px; }
+    .day-block:last-child { margin-bottom: 0; }
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .day-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .day-header h3 {
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+    .day-header .day-sub {
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .schedule-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .schedule-table tr:last-child { border: none; }
+    .schedule-table td {
+      padding: 14px 16px;
+      font-size: .9rem;
+      vertical-align: top;
+    }
+    .schedule-table td:first-child {
+      color: var(--muted);
+      white-space: nowrap;
+      width: 120px;
+      font-variant-numeric: tabular-nums;
+    }
+    .schedule-table td:nth-child(2) {
+      font-weight: 600;
+    }
+    .schedule-table td:last-child {
+      color: var(--muted);
+      text-align: right;
+      font-size: .8rem;
+    }
+    .schedule-table tr.highlight td { background: rgba(79,142,247,.05); }
+    .schedule-table tr.highlight td:nth-child(2) { color: var(--blue); }
+    .schedule-table tr.fieldtrip td { background: rgba(232,184,75,.05); }
+    .schedule-table tr.fieldtrip td:nth-child(2) { color: var(--gold); }
+
+    /* ── FIELD TRIP ── */
+    .fieldtrip-box {
+      background: linear-gradient(135deg, #120f04 0%, #0e0c04 100%);
+      border: 1px solid #2a2210;
+      border-radius: 10px;
+      padding: 36px 40px;
+    }
+    .fieldtrip-box .tag {
+      background: rgba(232,184,75,.12);
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .fieldtrip-box h3 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .fieldtrip-box p {
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-size: .95rem;
+    }
+    .ft-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .ft-option {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: .88rem;
+    }
+    .ft-option .letter {
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .ft-option p { color: var(--muted); margin: 0; font-size: .85rem; }
+
+    /* ── PANEL ── */
+    .panel-questions {
+      list-style: none;
+      counter-reset: q;
+    }
+    .panel-questions li {
+      counter-increment: q;
+      display: flex;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .95rem;
+    }
+    .panel-questions li:last-child { border: none; }
+    .panel-questions li::before {
+      content: counter(q);
+      font-size: .8rem;
+      font-weight: 900;
+      color: var(--blue);
+      background: rgba(79,142,247,.12);
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── SPEAKERS ── */
+    .speaker-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .speaker-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+    }
+    .speaker-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--border);
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+    .speaker-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+    .speaker-card .role { font-size: .8rem; color: var(--muted); margin-bottom: 8px; }
+    .speaker-card .topic {
+      font-size: .8rem;
+      color: var(--blue);
+      background: rgba(79,142,247,.1);
+      padding: 4px 10px;
+      border-radius: 99px;
+      display: inline-block;
+    }
+    .speaker-tbd { color: var(--muted); font-style: italic; font-size: .85rem; }
+
+    /* ── VIRTUAL ── */
+    .virtual-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 40px;
+    }
+    .virtual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 28px;
+    }
+    .virtual-item h4 {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+    .virtual-item p { font-size: .88rem; color: var(--muted); }
+
+    /* ── TICKETS ── */
+    .ticket-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    .ticket-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px;
+      background: var(--surface);
+      position: relative;
+    }
+    .ticket-card.platinum {
+      border-color: var(--gold);
+      background: #0c0c0a;
+    }
+    .ticket-card .badge {
+      position: absolute;
+      top: -13px;
+      left: 24px;
+      background: var(--gold);
+      color: #000;
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 99px;
+    }
+    .ticket-card h3 { font-size: 1rem; color: var(--muted); margin-bottom: 14px; }
+    .ticket-card .price {
+      font-size: 2.4rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .ticket-card.platinum .price { color: var(--gold); }
+    .ticket-card .price-note { font-size: .82rem; color: var(--muted); margin-bottom: 20px; }
+    .ticket-card ul { list-style: none; margin-bottom: 24px; }
+    .ticket-card ul li {
+      font-size: .88rem;
+      color: var(--muted);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ticket-card ul li:last-child { border: none; }
+    .ticket-card ul li::before { content: "✓  "; color: #40a060; }
+
+    /* ── CTA ── */
+    .event-cta {
+      text-align: center;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, #0d1a2e 0%, var(--bg) 70%);
+    }
+    .event-cta h2 { margin-bottom: 12px; }
+    .event-cta p { color: var(--muted); margin-bottom: 32px; }
+    .cta-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      text-align: center;
+      font-size: .82rem;
+      color: #444;
+    }
+
+    @media (max-width: 640px) {
+      .hero .meta { gap: 16px; }
+      .speaker-grid { grid-template-columns: 1fr 1fr; }
+      .ft-options { grid-template-columns: 1fr; }
+      .virtual-grid { grid-template-columns: 1fr; }
+      .ticket-cards { grid-template-columns: 1fr; }
+      .ticket-card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BANNER -->
+<div style="background:#e8b84b;color:#000;text-align:center;padding:13px 24px;font-weight:800;font-size:.9rem;letter-spacing:.03em;">
+  🖥️ Every IN-PERSON attendee gets a Mac mini M4 — Virtual: $99 · In-Person: $1,000 · Platinum: Included
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="inner">
+      <div class="logo">Pittsburgh <span>Boot Camp</span></div>
+      <a href="index.html" class="nav-cta">Join Platinum →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="tag">Live Event · May 2026</div>
+    <h1>Pittsburgh Boot Camp <em>2026</em></h1>
+    <div class="meta">
+      <div class="meta-item">
+        <div class="label">Date</div>
+        <div class="value">May 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Location</div>
+        <div class="value">Pittsburgh, PA</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Format</div>
+        <div class="value">Hybrid · In-Person + Livestream</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Duration</div>
+        <div class="value">2 Days</div>
+      </div>
+    </div>
+    <a href="#tickets" class="btn btn-primary">Get Your Ticket →</a>
+    <div class="note">Platinum members: Boot Camp is included in your membership.</div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section>
+  <div class="container">
+    <div class="section-label">Full Schedule</div>
+    <h2>Two days. No filler.</h2>
+    <p class="lead">Day one is about building. Day two is about learning from people who've already built it. The field trip is about Pittsburgh.</p>
+
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-number">1</div>
+        <div>
+          <h3>Build Day</h3>
+          <div class="day-sub">"Stop watching. Start building."</div>
+        </div>
+      </div>
+      <table class="schedule-table">
+        <tbody>
+          <tr><td>8:30 AM</td><td>Doors open · coffee · networking</td><td>In-person</td></tr>
+          <tr class="highlight"><td>9:00 AM</td><td>Keynote: Stop Learning. Start Building. — Carter &amp; Drake</td><td>Main stage</td></tr>
+          <tr class="highlight"><td>9:30 AM</td><td>Joanna Doven — AI Economic Strategy for Business</td><td>Presentation + Q&amp;A</td></tr>
+          <tr><td>10:30 AM</td><td>Break</td><td>—</td></tr>
+          <tr class="highlight"><td>10:45 AM</td><td>Expert Speaker 2 — Topic TBD</td><td>Presentation + Q&amp;A</td></tr>
+          <tr><td>11:45 AM</td><td>Live Q&amp;A — Speakers + Carter &amp; Drake</td><td>Panel</td></tr>
+          <tr><td>12:00 PM</td><td>Lunch</td><td>—</td></tr>
+          <tr class="highlight"><td>1:00 PM</td><td>Implementation Block — Build something live</td><td>Workshop</td></tr>
+          <tr><td>2:30 PM</td><td>Show & tell — who built what</td><td>Group</td></tr>
+          <tr><td>3:00 PM</td><td>Break</td><td>—</td></tr>
+          <tr><td>3:15 PM</td><td>Debrief + Day 2 preview — Carter &amp; Drake</td><td>Brief</td></tr>
+          <tr><td>3:30 PM</td><td>Head out — change and regroup</td><td>—</td></tr>
+          <tr class="fieldtrip"><td>5:00 PM</td><td>Pittsburgh Field Trip — Evening experience</td><td>Group outing</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-number">2</div>
+        <div>
+          <h3>Panel Day</h3>
+          <div class="day-sub">"The people who've done it tell you how."</div>
+        </div>
+      </div>
+      <table class="schedule-table">
+        <tbody>
+          <tr><td>8:30 AM</td><td>Doors open · coffee</td><td>In-person</td></tr>
+          <tr><td>9:00 AM</td><td>Recap of Day 1 wins — Carter &amp; Drake</td><td>Brief</td></tr>
+          <tr class="highlight"><td>9:15 AM</td><td>Expert Panel — moderated by Carter &amp; Drake</td><td>90-min panel</td></tr>
+          <tr><td>10:45 AM</td><td>Break</td><td>—</td></tr>
+          <tr class="highlight"><td>11:00 AM</td><td>Open Audience Q&amp;A</td><td>Live Q&amp;A</td></tr>
+          <tr><td>12:00 PM</td><td>Lunch</td><td>—</td></tr>
+          <tr class="highlight"><td>1:00 PM</td><td>Hot Seats — members get live coaching</td><td>Group</td></tr>
+          <tr class="highlight"><td>2:30 PM</td><td>90-Day Planning Workshop — build your sprint live</td><td>Workshop</td></tr>
+          <tr><td>3:30 PM</td><td>Break</td><td>—</td></tr>
+          <tr class="highlight"><td>3:45 PM</td><td>Closing Keynote — Carter &amp; Drake</td><td>Main stage</td></tr>
+          <tr><td>4:15 PM</td><td>Celebration · photos · networking</td><td>Open</td></tr>
+          <tr><td>5:00 PM</td><td>Event ends</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FIELD TRIP -->
+<section>
+  <div class="container">
+    <div class="fieldtrip-box">
+      <div class="tag">Day 1 Evening</div>
+      <h3>The Pittsburgh Field Trip</h3>
+      <p>The evening experience is part of the program. This isn't a free hour to go back to the hotel. We go somewhere together — something you can only do in Pittsburgh. Details announced closer to the event date.</p>
+      <div class="ft-options">
+        <div class="ft-option">
+          <div class="letter">Option A</div>
+          <p>Private tour of a Pittsburgh tech company or AI lab</p>
+        </div>
+        <div class="ft-option">
+          <div class="letter">Option B</div>
+          <p>Group dinner at a Pittsburgh landmark — conversation included</p>
+        </div>
+        <div class="ft-option">
+          <div class="letter">Option C</div>
+          <p>Duquesne Incline + dinner overlooking the city skyline</p>
+        </div>
+        <div class="ft-option">
+          <div class="letter">Option D</div>
+          <p>Pittsburgh brewery networking — casual, local, memorable</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section>
+  <div class="container">
+    <div class="section-label">Speakers</div>
+    <h2>Day 1 experts.<br />Day 2 panel.</h2>
+    <p class="lead">Day 1 speakers go deep on one topic. Day 2 panelists have done what you're trying to do — and Carter &amp; Drake make them answer the questions you actually want answered.</p>
+    <div class="speaker-grid">
+      <div class="speaker-card">
+        <div class="speaker-avatar">🎤</div>
+        <h4>Carter &amp; Drake</h4>
+        <div class="role">Host &amp; Keynote</div>
+        <div class="topic">Stop Learning. Start Building.</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-avatar">⚡</div>
+        <h4>Joanna Doven</h4>
+        <div class="role">Day 1 · Expert Presentation</div>
+        <div class="topic">AI Economic Strategy for Business</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-avatar">👤</div>
+        <h4 class="speaker-tbd">Speaker TBD</h4>
+        <div class="role">Day 1 · Expert Presentation</div>
+        <div class="topic">Announcement coming</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-avatar">👤</div>
+        <h4 class="speaker-tbd">Panelist TBD</h4>
+        <div class="role">Day 2 · Expert Panel</div>
+        <div class="topic">Announcement coming</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-avatar">👤</div>
+        <h4 class="speaker-tbd">Panelist TBD</h4>
+        <div class="role">Day 2 · Expert Panel</div>
+        <div class="topic">Announcement coming</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-avatar">👤</div>
+        <h4 class="speaker-tbd">Panelist TBD</h4>
+        <div class="role">Day 2 · Expert Panel</div>
+        <div class="topic">Announcement coming</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PANEL QUESTIONS -->
+<section>
+  <div class="container">
+    <div class="section-label">Day 2 Panel</div>
+    <h2>The questions you<br />actually want answered.</h2>
+    <p class="lead">Carter &amp; Drake moderate the panel. Here are the questions that will get asked — no softballs, no vague advice, no "it depends" non-answers.</p>
+    <ol class="panel-questions">
+      <li>What was the moment you realized AI was changing how you work — for real?</li>
+      <li>What's the most overrated AI tool right now, and what actually works?</li>
+      <li>Walk us through a real project where AI saved you serious time or money.</li>
+      <li>What do most people get wrong when they start automating their business?</li>
+      <li>If you were starting today with no budget and no team, what would you build first?</li>
+      <li>What's the one thing people in this room should do the week after this event?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- VIRTUAL -->
+<section>
+  <div class="container">
+    <div class="virtual-box">
+      <div class="section-label">Virtual Attendees</div>
+      <h2>Can't make it to Pittsburgh?<br />You still get the whole thing.</h2>
+      <div class="virtual-grid">
+        <div class="virtual-item">
+          <h4>Live Stream</h4>
+          <p>Both days, fully live. Watch sessions as they happen from anywhere in the world.</p>
+        </div>
+        <div class="virtual-item">
+          <h4>Live Chat</h4>
+          <p>Participate in real time. Your questions go to a moderator and get surfaced in the room.</p>
+        </div>
+        <div class="virtual-item">
+          <h4>Virtual Hot Seat</h4>
+          <p>Submit your situation in advance. Day 2 hot seats include virtual members.</p>
+        </div>
+        <div class="virtual-item">
+          <h4>Full Recordings</h4>
+          <p>All sessions added to the Platinum Vault within 48 hours. Watch, rewatch, share with your team.</p>
+        </div>
+        <div class="virtual-item">
+          <h4>Field Trip Recap</h4>
+          <p>A recap reel from the Pittsburgh evening experience, posted the next morning.</p>
+        </div>
+        <div class="virtual-item">
+          <h4>Planning Workshop</h4>
+          <p>The 90-day sprint doc is shared digitally. Build your plan right alongside in-person attendees.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HARDWARE -->
+<section>
+  <div class="container">
+    <div style="background:linear-gradient(135deg,#0a0f1a 0%,#080c14 100%);border:1px solid #1e2a40;border-radius:12px;padding:56px 48px;text-align:center;">
+      <div style="display:inline-block;background:rgba(79,142,247,.12);color:#4f8ef7;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:99px;margin-bottom:24px;">What You Take Home</div>
+      <h2 style="font-size:clamp(2rem,4.5vw,3rem);margin-bottom:12px;">Every in-person attendee<br />gets a Mac mini M4.</h2>
+      <p style="color:#888;max-width:500px;margin:0 auto 44px;font-size:1.05rem;">Not a tote bag. Not a notebook. A Mac mini M4. Yours to keep. The machine you need to actually build what you learned at the event. In-person only.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:600px;margin:0 auto 44px;text-align:left;">
+        <div style="background:rgba(255,255,255,.03);border:1px solid #1e2a40;border-radius:10px;padding:28px;">
+          <div style="font-size:2rem;margin-bottom:12px;">🖥️</div>
+          <div style="font-size:1rem;font-weight:800;margin-bottom:6px;color:#f0f0f0;">Mac mini M4</div>
+          <div style="font-size:.85rem;color:#888;margin-bottom:12px;">Every in-person attendee. No raffle. No lottery. You show up in Pittsburgh, you get the machine.</div>
+          <div style="font-size:.8rem;font-weight:700;color:#4f8ef7;">$599 value · yours to keep · in-person only</div>
+        </div>
+        <div style="background:rgba(255,255,255,.03);border:1px solid #2a3020;border-radius:10px;padding:28px;">
+          <div style="font-size:2rem;margin-bottom:12px;">🏆</div>
+          <div style="font-size:1rem;font-weight:800;margin-bottom:6px;color:#f0f0f0;">Synology NAS Giveaway</div>
+          <div style="font-size:.85rem;color:#888;margin-bottom:12px;">One attendee wins a brand new Synology NAS. Drawn live on Day 2 closing. You have to be present — in person or on the livestream — to win.</div>
+          <div style="font-size:.8rem;font-weight:700;color:#40a060;">Brand new · drawn live Day 2</div>
+        </div>
+      </div>
+      <p style="color:#666;font-size:.9rem;max-width:540px;margin:0 auto;">The Mac mini M4 alone is worth $599. The in-person GA ticket is $1,000. You're essentially paying $401 for two days of implementation, expert panels, a field trip through Pittsburgh, and a machine to build on when you get home. Can't make it in person? Virtual access is $99 for the full weekend.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TICKETS -->
+<section id="tickets">
+  <div class="container">
+    <div class="section-label">Tickets</div>
+    <h2>Get your seat.</h2>
+    <p class="lead">Three ways in. Virtual starts at $99. In-person includes a Mac mini M4. Platinum members attend free. In-person capacity: 20 seats.</p>
+    <div class="ticket-cards">
+      <div class="ticket-card">
+        <h3>Virtual</h3>
+        <div class="price">$99</div>
+        <div class="price-note">full weekend · both days</div>
+        <ul>
+          <li>Live stream — both days</li>
+          <li>Live chat participation</li>
+          <li>Virtual hot seat option</li>
+          <li>Session recordings for 30 days</li>
+          <li>90-day planning worksheet</li>
+          <li style="color:#40a060;border-color:#1a2a1a">🏆 Eligible for NAS giveaway</li>
+        </ul>
+        <a href="#" class="btn btn-outline" style="width:100%">Get Virtual Ticket — $99 →</a>
+      </div>
+      <div class="ticket-card platinum">
+        <div class="badge">Best value</div>
+        <h3>Platinum Member</h3>
+        <div class="price">Included</div>
+        <div class="price-note">with $195/month Platinum membership</div>
+        <ul>
+          <li>Both days, in-person or virtual</li>
+          <li>Field trip included</li>
+          <li>All session recordings — vault forever</li>
+          <li>Priority seating</li>
+          <li>All 7 monthly Platinum benefits</li>
+          <li style="color:#4f8ef7;border-color:#1e2a40">🖥️ Mac mini M4 — in-person attendees</li>
+          <li style="color:#40a060;border-color:#1a2a1a">🏆 Eligible for NAS giveaway</li>
+        </ul>
+        <a href="index.html#join" class="btn btn-primary" style="width:100%">Join Platinum →</a>
+      </div>
+      <div class="ticket-card">
+        <h3>In-Person GA</h3>
+        <div class="price">$1,000</div>
+        <div class="price-note">or $500 with Automation Discount</div>
+        <ul>
+          <li>Both days, in-person</li>
+          <li>Pittsburgh Field Trip — evening Day 1</li>
+          <li>Session recordings for 30 days</li>
+          <li style="color:#4f8ef7;border-color:#1e2a40">🖥️ Mac mini M4 — included ($599 value)</li>
+          <li style="color:#40a060;border-color:#1a2a1a">🏆 Eligible for NAS giveaway</li>
+          <li style="color:#e8b84b;border-color:#2a2210">⚡ Submit an automation → 50% off</li>
+        </ul>
+        <a href="#" class="btn btn-outline" style="width:100%">Get In-Person Ticket — $1,000 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="event-cta">
+  <div class="container">
+    <h2>Two days in Pittsburgh.<br />You leave with a Mac mini M4 and a plan.</h2>
+    <p>Most events send you home inspired. This one sends you home with a 90-day sprint, a vault full of tools, a Mac mini M4, and a room full of people moving in the same direction. Oh — and one of you wins a Synology NAS.</p>
+    <div class="cta-group">
+      <a href="index.html#join" class="btn btn-primary">Join Platinum — Event Included →</a>
+      <a href="#tickets" class="btn btn-outline">Get GA Ticket</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Pittsburgh Boot Camp 2026 &copy; Pittsburgh Boot Camp · <a href="https://dmpgh.com" style="color:#555">dmpgh.com</a></p>
+  </div>
+</footer>
+
+<!-- DOUG BUG -->
+<style>
+  .db-wrap { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; align-items:flex-end; gap:12px; }
+  .db-bug { width:58px; height:58px; background:#e74c3c; border-radius:50%; border:3px solid #222; cursor:pointer; position:relative; transition:transform .25s,box-shadow .25s; flex-shrink:0; }
+  .db-bug:hover { transform:scale(1.12); box-shadow:0 8px 24px rgba(231,76,60,.55); }
+  .db-bug.db-active { animation:db-pulse 1s ease-in-out infinite; }
+  @keyframes db-pulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.1)} }
+  .db-bug::before { content:''; position:absolute; top:-14px; left:50%; transform:translateX(-50%); width:28px; height:20px; background:#222; border-radius:50%; }
+  .db-s { position:absolute; background:#222; border-radius:50%; }
+  .db-s1{width:10px;height:10px;top:14px;left:18px}
+  .db-s2{width:13px;height:13px;top:22px;right:12px}
+  .db-s3{width:9px;height:9px;bottom:16px;left:15px}
+  .db-s4{width:11px;height:11px;bottom:12px;right:16px}
+  .db-panel { display:none; background:#111; border:1px solid #2a2a2a; border-radius:12px; padding:20px; width:280px; box-shadow:0 16px 48px rgba(0,0,0,.7); }
+  .db-panel.db-show { display:block; animation:db-slide .3s ease; }
+  @keyframes db-slide { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  .db-panel h4 { color:#f0f0f0; font-size:.9rem; font-weight:700; margin-bottom:14px; font-family:'Inter',sans-serif; }
+  .db-panel label { display:block; font-size:.72rem; font-weight:600; color:#888; margin-bottom:4px; margin-top:10px; font-family:'Inter',sans-serif; text-transform:uppercase; letter-spacing:.06em; }
+  .db-panel input, .db-panel textarea, .db-panel select { width:100%; background:#1a1a1a; border:1px solid #2a2a2a; border-radius:6px; padding:9px 10px; color:#f0f0f0; font-size:.85rem; font-family:'Inter',sans-serif; }
+  .db-panel input:focus, .db-panel textarea:focus, .db-panel select:focus { outline:none; border-color:#e8b84b; }
+  .db-panel select option { background:#1a1a1a; }
+  .db-btn { width:100%; margin-top:14px; padding:11px; background:#e8b84b; color:#000; border:none; border-radius:6px; font-weight:700; font-size:.88rem; cursor:pointer; font-family:'Inter',sans-serif; transition:opacity .15s; }
+  .db-btn:hover { opacity:.88; }
+  .db-btn:disabled { opacity:.45; cursor:not-allowed; }
+  .db-ok { margin-top:12px; padding:10px; background:rgba(64,160,96,.15); border:1px solid rgba(64,160,96,.3); border-radius:6px; color:#40a060; font-size:.8rem; font-family:'Inter',sans-serif; display:none; }
+  .db-err { margin-top:12px; padding:10px; background:rgba(231,76,60,.12); border:1px solid rgba(231,76,60,.3); border-radius:6px; color:#e74c3c; font-size:.8rem; font-family:'Inter',sans-serif; display:none; }
+</style>
+<div class="db-wrap">
+  <div class="db-panel" id="dbPanel">
+    <h4>🐞 Bug Doug</h4>
+    <label>Your Name</label>
+    <input type="text" id="dbName" placeholder="Who's bugging Doug?" />
+    <label>What do you need?</label>
+    <textarea id="dbReason" rows="2" placeholder="Quick message..."></textarea>
+    <label>Best way to reach you</label>
+    <select id="dbMethod">
+      <option value="email">Email</option>
+      <option value="text">Text</option>
+      <option value="phone">Phone Call</option>
+    </select>
+    <label>Email</label>
+    <input type="email" id="dbEmail" placeholder="you@example.com" />
+    <label>Phone</label>
+    <input type="tel" id="dbPhone" placeholder="(412) 555-0100" />
+    <button class="db-btn" id="dbBtn" onclick="dbSend()">🐞 Bug Doug Now!</button>
+    <div class="db-ok" id="dbOk"></div>
+    <div class="db-err" id="dbErr"></div>
+  </div>
+  <div class="db-bug" id="dbBug" onclick="dbToggle()">
+    <div class="db-s db-s1"></div>
+    <div class="db-s db-s2"></div>
+    <div class="db-s db-s3"></div>
+    <div class="db-s db-s4"></div>
+  </div>
+</div>
+<script>
+  function dbToggle(){
+    var p=document.getElementById('dbPanel'), b=document.getElementById('dbBug');
+    var open=p.classList.toggle('db-show');
+    b.classList.toggle('db-active', open);
+  }
+  async function dbSend(){
+    var name=document.getElementById('dbName').value.trim();
+    var reason=document.getElementById('dbReason').value.trim();
+    var method=document.getElementById('dbMethod').value;
+    var email=document.getElementById('dbEmail').value.trim();
+    var phone=document.getElementById('dbPhone').value.trim();
+    var btn=document.getElementById('dbBtn');
+    var ok=document.getElementById('dbOk');
+    var err=document.getElementById('dbErr');
+    ok.style.display='none'; err.style.display='none';
+    if(!name||!reason){err.style.display='block';err.textContent='Name and message required.';return;}
+    btn.disabled=true; btn.textContent='Sending...';
+    try{
+      var r=await fetch('https://dougbug.com/bug.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,reason,contactMethod:method,email,phone})});
+      var d=await r.json();
+      if(d.success){
+        ok.style.display='block'; ok.textContent='✅ Doug has been bugged! He\'ll reach out via '+method+'.';
+        btn.style.display='none';
+      } else {
+        err.style.display='block'; err.textContent='Something went wrong. Try again.';
+        btn.disabled=false; btn.textContent='🐞 Bug Doug Now!';
+      }
+    } catch(e){
+      err.style.display='block'; err.textContent='Connection error. Try again.';
+      btn.disabled=false; btn.textContent='🐞 Bug Doug Now!';
+    }
+  }
+</script>
+
+</body>
+</html>
