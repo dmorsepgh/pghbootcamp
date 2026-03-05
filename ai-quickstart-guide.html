@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Quickstart Guide — Pittsburgh Boot Camp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #080808;
+      --surface:  #111111;
+      --border:   #222222;
+      --gold:     #e8b84b;
+      --text:     #f0f0f0;
+      --muted:    #888888;
+      --accent:   #4f8ef7;
+      --green:    #3ecf8e;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HEADER ── */
+    .guide-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 0 48px;
+      text-align: center;
+    }
+
+    .guide-label {
+      display: inline-block;
+      background: var(--gold);
+      color: #080808;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 4px;
+      margin-bottom: 28px;
+    }
+
+    .guide-header h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .guide-header h1 span { color: var(--gold); }
+
+    .guide-header p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .guide-meta {
+      margin-top: 32px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    .section-number {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    .section p {
+      color: #ccc;
+      margin-bottom: 16px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    /* ── TOOL CARDS ── */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .tool-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 20px;
+    }
+
+    .tool-card .tool-name {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .tool-card .tool-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .tool-card .tool-url {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ── ACTION LIST ── */
+    .action-list {
+      list-style: none;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .action-list li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .action-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--gold);
+      color: #080808;
+      font-weight: 800;
+      font-size: 0.9rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .action-text strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .action-text span {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* ── STOP LIST ── */
+    .stop-list {
+      list-style: none;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stop-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .stop-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .stop-text strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .stop-text span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ── QUOTE BLOCK ── */
+    .quote-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 28px 28px;
+      margin-top: 28px;
+    }
+
+    .quote-block p {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: #ddd;
+      margin: 0;
+    }
+
+    .quote-block cite {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: normal;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 64px 0;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 1.9rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #080808;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 16px 36px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .btn:hover { opacity: 0.9; text-decoration: none; }
+
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @media print {
+      body { background: #fff; color: #111; }
+      .cta-section, .footer { display: none; }
+      .section { border-color: #ddd; }
+      .tool-card, .action-list li, .stop-list li, .quote-block {
+        border-color: #ddd;
+        background: #f9f9f9;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="guide-header">
+    <div class="container">
+      <div class="guide-label">Free Resource — Pittsburgh Boot Camp</div>
+      <h1>AI Quickstart Guide<br><span>From Zero to Useful in 20 Minutes</span></h1>
+      <p>You don't need to become a tech person. You just need to know which three tools to open and what to say to them.</p>
+      <div class="guide-meta">Pittsburgh Boot Camp &nbsp;·&nbsp; dmpgh.com &nbsp;·&nbsp; May 2026</div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: WHAT IS AI -->
+  <section class="section">
+    <div class="container">
+      <div class="section-number">Section 01</div>
+      <h2>What AI Actually Is<br>(In Plain English)</h2>
+      <p>Forget the robots. Forget the sci-fi. AI, the kind you'll actually use, is a really smart assistant that lives in your browser. You type something. It responds. That's it.</p>
+      <p>It's read more books, articles, manuals, and business reports than any human ever will. It doesn't get tired, it doesn't have bad days, and it doesn't charge $150 an hour. It's available 24/7 and it answers in seconds.</p>
+      <p>The only thing it can't do is know your situation. That's your job. You bring the context. It brings the horsepower. Together, you get things done in a fraction of the time.</p>
+      <div class="quote-block">
+        <p>"I'm not worried about AI replacing me. I'm worried about the person using AI replacing me."</p>
+        <cite>— Every smart worker in 2026</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: THREE TOOLS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-number">Section 02</div>
+      <h2>The Three Tools You Need Right Now</h2>
+      <p>Don't sign up for twenty things. Start with these three. They cover 90% of what you'll ever need to do.</p>
+      <div class="tool-grid">
+        <div class="tool-card">
+          <div class="tool-name">ChatGPT</div>
+          <p class="tool-desc">The one everyone's heard of. Great for writing, summarizing, brainstorming, and answering questions. Start here if you've never used AI before.</p>
+          <a class="tool-url" href="https://chat.openai.com" target="_blank">chat.openai.com →</a>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">Claude</div>
+          <p class="tool-desc">Built for longer, more nuanced tasks. Better at writing in your voice, thinking through complex problems, and following detailed instructions.</p>
+          <a class="tool-url" href="https://claude.ai" target="_blank">claude.ai →</a>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">Google Gemini</div>
+          <p class="tool-desc">Connected to the web in real time. Use it when you need current information — today's prices, recent news, live research.</p>
+          <a class="tool-url" href="https://gemini.google.com" target="_blank">gemini.google.com →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: 5 THINGS TODAY -->
+  <section class="section">
+    <div class="container">
+      <div class="section-number">Section 03</div>
+      <h2>5 Things You Can Do With AI Today</h2>
+      <p>Not someday. Today. Open any of the tools above, copy one of these prompts, and swap in your details.</p>
+      <ul class="action-list">
+        <li>
+          <div class="action-num">1</div>
+          <div class="action-text">
+            <strong>Write a professional email you've been dreading</strong>
+            <span>Prompt: "Write a polite but firm email to a client who hasn't paid their invoice. Keep it professional. Here are the details: [paste details]"</span>
+          </div>
+        </li>
+        <li>
+          <div class="action-num">2</div>
+          <div class="action-text">
+            <strong>Summarize a long document in 60 seconds</strong>
+            <span>Prompt: "Summarize this in plain English. Tell me the three most important points. [paste the document]"</span>
+          </div>
+        </li>
+        <li>
+          <div class="action-num">3</div>
+          <div class="action-text">
+            <strong>Create a week's worth of social media posts</strong>
+            <span>Prompt: "Write 5 short social media posts for a [your business type] in [your city]. Keep the tone friendly and professional."</span>
+          </div>
+        </li>
+        <li>
+          <div class="action-num">4</div>
+          <div class="action-text">
+            <strong>Answer a customer question you get over and over</strong>
+            <span>Prompt: "Write a clear, friendly FAQ answer to this question my customers always ask: [your question]"</span>
+          </div>
+        </li>
+        <li>
+          <div class="action-num">5</div>
+          <div class="action-text">
+            <strong>Turn a voice memo into a written document</strong>
+            <span>Prompt: "I'm going to paste a rough transcript. Clean it up, organize it, and make it professional: [paste transcript]"</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SECTION 4: STOP DOING -->
+  <section class="section">
+    <div class="container">
+      <div class="section-number">Section 04</div>
+      <h2>What to Stop Doing Manually</h2>
+      <p>This is the part people miss. AI isn't just about doing new things faster. It's about stopping the time-wasters that have been eating your day for years.</p>
+      <ul class="stop-list">
+        <li>
+          <div class="stop-icon">✓</div>
+          <div class="stop-text">
+            <strong>Staring at a blank page</strong>
+            <span>Give AI a rough idea and let it write the first draft. You edit. It writes. That's the deal.</span>
+          </div>
+        </li>
+        <li>
+          <div class="stop-icon">✓</div>
+          <div class="stop-text">
+            <strong>Googling basic questions</strong>
+            <span>AI gives you a direct answer with context. No clicking through five websites to find what you need.</span>
+          </div>
+        </li>
+        <li>
+          <div class="stop-icon">✓</div>
+          <div class="stop-text">
+            <strong>Rewriting the same email twelve different ways</strong>
+            <span>Write it once, rough. Ask AI to make it professional, friendly, or firm — whatever the situation calls for.</span>
+          </div>
+        </li>
+        <li>
+          <div class="stop-icon">✓</div>
+          <div class="stop-text">
+            <strong>Paying someone to write content you could do yourself</strong>
+            <span>Blog posts, product descriptions, bios, proposals. With AI, you're the writer. It's just your very fast assistant.</span>
+          </div>
+        </li>
+        <li>
+          <div class="stop-icon">✓</div>
+          <div class="stop-text">
+            <strong>Feeling behind</strong>
+            <span>You're not behind. You're starting. And starting now puts you ahead of everyone still just thinking about it.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SECTION 5: NEXT STEP -->
+  <section class="section">
+    <div class="container">
+      <div class="section-number">Section 05</div>
+      <h2>Your Next Step</h2>
+      <p>Here's the only rule that matters: you have to actually use it. Not read about it. Not watch videos about it. Use it.</p>
+      <p>Open one of the three tools from Section 02. Try one of the prompts from Section 03. Do it today, before you close this tab. The first five minutes is where most people give up — and the first five minutes is the hardest it ever gets.</p>
+      <p>After that, it gets easier every single time. Within a week, you'll wonder how you did your job without it.</p>
+      <div class="quote-block">
+        <p>The goal isn't to become an AI expert. The goal is to stop doing things manually that a computer can do for you in three seconds.</p>
+        <cite>— Pittsburgh Boot Camp, 2026</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Go Deeper?</h2>
+      <p>Pittsburgh Boot Camp is a hands-on event for people who want to actually use AI in their business — not just talk about it.</p>
+      <a class="btn" href="https://dmorsepgh.github.io/pghbootcamp/">Learn About Pittsburgh Boot Camp →</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      Pittsburgh Boot Camp &nbsp;·&nbsp; dmpgh.com &nbsp;·&nbsp; Pittsburgh, PA &nbsp;·&nbsp; May 2026
+    </div>
+  </footer>
+
+</body>
+</html>
