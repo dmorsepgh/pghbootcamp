@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free AI Quickstart Guide + Win a Mac mini M4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #080808;
+      --surface:  #111111;
+      --border:   #222222;
+      --gold:     #e8b84b;
+      --text:     #f0f0f0;
+      --muted:    #888888;
+      --accent:   #4f8ef7;
+      --green:    #3ecf8e;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 72px 0 56px;
+      text-align: center;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #080808;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 4px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #aaa;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── WHAT YOU GET ── */
+    .prizes {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .prizes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 540px) {
+      .prizes-grid { grid-template-columns: 1fr; }
+    }
+
+    .prize-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 24px;
+    }
+
+    .prize-card.featured {
+      border-color: var(--gold);
+    }
+
+    .prize-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .prize-tag.free-tag { color: var(--green); }
+
+    .prize-card h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .prize-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .prizes h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+
+    /* ── FORM ── */
+    .form-section {
+      padding: 56px 0 72px;
+    }
+
+    .form-section h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .form-section .sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 36px;
+    }
+
+    .form-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 36px 32px;
+    }
+
+    @media (max-width: 480px) {
+      .form-block { padding: 24px 20px; }
+    }
+
+    .tier-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .tier-required { background: rgba(62,207,142,0.15); color: var(--green); }
+    .tier-optional { background: rgba(232,184,75,0.15); color: var(--gold); }
+
+    .tier-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .tier-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #ccc;
+      margin-bottom: 6px;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      background: #0d0d0d;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .field input:focus {
+      border-color: var(--accent);
+    }
+
+    .field input::placeholder { color: #444; }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .field-row { grid-template-columns: 1fr; }
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+
+    .giveaway-note {
+      background: rgba(232,184,75,0.07);
+      border: 1px solid rgba(232,184,75,0.2);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 0.82rem;
+      color: #bbb;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .giveaway-note strong { color: var(--gold); }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--gold);
+      color: #080808;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 18px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: opacity 0.15s;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover { opacity: 0.9; }
+
+    .form-fine {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer a { color: var(--muted); }
+
+    /* ── THANK YOU (hidden by default) ── */
+    .thank-you {
+      display: none;
+      text-align: center;
+      padding: 56px 24px;
+    }
+
+    .thank-you h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .thank-you h2 span { color: var(--gold); }
+
+    .thank-you p {
+      color: var(--muted);
+      margin-bottom: 28px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-guide {
+      display: inline-block;
+      background: var(--gold);
+      color: #080808;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 16px 36px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge">Limited Giveaway — Pittsburgh Boot Camp 2026</div>
+      <h1>Get the Free Guide.<br><span>Maybe Win the Computer.</span></h1>
+      <p>Sign up and we'll send you our AI Quickstart Guide immediately. Add your contact info and you're entered to win a Mac mini M4.</p>
+    </div>
+  </header>
+
+  <!-- PRIZES -->
+  <section class="prizes">
+    <div class="container">
+      <div class="section-label">What's on the table</div>
+      <h2>Two reasons to fill this out.</h2>
+      <div class="prizes-grid">
+        <div class="prize-card">
+          <div class="prize-tag free-tag">Everyone gets this</div>
+          <h3>AI Quickstart Guide</h3>
+          <p>Plain-English breakdown of the three tools you need, five things you can do today, and what to stop doing manually. Yours instantly.</p>
+        </div>
+        <div class="prize-card featured">
+          <div class="prize-tag">Giveaway Prize</div>
+          <h3>Mac mini M4 + NAS</h3>
+          <p>A Mac mini M4 and a U-Green NAS — the same setup Pittsburgh Boot Camp attendees walk away with. One winner. Drawing at the event.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="form-section">
+    <div class="container">
+      <div class="section-label">Enter below</div>
+      <h2>You're two minutes away.</h2>
+      <p class="sub">Email gets you the guide. Everything else gets you in the drawing.</p>
+
+      <form id="signup-form" class="form-block" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+        <!-- TIER 1: REQUIRED -->
+        <div class="tier-label tier-required">Required — Get the free guide</div>
+        <div class="tier-title">Your Name & Email</div>
+        <div class="tier-desc">We'll send your AI Quickstart Guide here immediately.</div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="first">First Name</label>
+            <input type="text" id="first" name="first_name" placeholder="Tom" required />
+          </div>
+          <div class="field">
+            <label for="last">Last Name</label>
+            <input type="text" id="last" name="last_name" placeholder="Smith" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="tom@yourshop.com" required />
+        </div>
+
+        <hr class="divider" />
+
+        <!-- TIER 2: OPTIONAL -->
+        <div class="tier-label tier-optional">Optional — Enter the giveaway</div>
+        <div class="tier-title">Phone & Mailing Address</div>
+        <div class="tier-desc">Only needed to contact you if you win. Skip it and you're still getting the guide.</div>
+
+        <div class="giveaway-note">
+          <strong>Prize drawing:</strong> Mac mini M4 + U-Green NAS. Winner announced at Pittsburgh Boot Camp, May 2026. Must provide a valid mailing address to claim prize.
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone Number <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="(412) 555-0100" />
+        </div>
+
+        <div class="field">
+          <label for="address">Street Address <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+          <input type="text" id="address" name="address" placeholder="123 Main Street" />
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="city">City <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+            <input type="text" id="city" name="city" placeholder="Pittsburgh" />
+          </div>
+          <div class="field">
+            <label for="state">State <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+            <input type="text" id="state" name="state" placeholder="PA" maxlength="2" />
+          </div>
+        </div>
+
+        <input type="hidden" name="_subject" value="New PGH Boot Camp Signup" />
+        <input type="hidden" name="_next" value="https://dmorsepgh.github.io/pghbootcamp/free-guide.html?thanks=1" />
+
+        <button type="submit" class="btn-submit">Send Me the Free Guide →</button>
+
+        <p class="form-fine">No spam. No selling your info. Just the guide and occasional updates from Pittsburgh Boot Camp.</p>
+      </form>
+
+      <!-- THANK YOU STATE -->
+      <div class="thank-you" id="thank-you">
+        <h2>You're in. <span>Guide is on its way.</span></h2>
+        <p>Check your inbox in the next few minutes. If you included your mailing address, you're entered in the drawing.</p>
+        <a class="btn-guide" href="/pghbootcamp/ai-quickstart-guide.html">Read the Guide Now →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      Pittsburgh Boot Camp &nbsp;·&nbsp; <a href="https://dmpgh.com">dmpgh.com</a> &nbsp;·&nbsp; Pittsburgh, PA &nbsp;·&nbsp; May 2026<br><br>
+      No purchase necessary. One prize per household. Winner notified by email and phone.
+    </div>
+  </footer>
+
+  <script>
+    // Show thank-you state if redirected back with ?thanks=1
+    if (window.location.search.includes('thanks=1')) {
+      document.getElementById('signup-form').style.display = 'none';
+      document.getElementById('thank-you').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
