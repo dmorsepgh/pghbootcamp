@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VS Code + Claude Demo — Pittsburgh Boot Camp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #080808; color: #f0f0f0; padding: 40px 32px; }
+    h1 { font-size: 1.6rem; font-weight: 900; color: #e8b84b; margin-bottom: 6px; }
+    .sub { font-size: .9rem; color: #666; margin-bottom: 40px; }
+
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+    /* video side */
+    .video-side h2 { font-size: 1rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 14px; }
+    video { width: 100%; border-radius: 10px; border: 1px solid #222; }
+    .note { margin-top: 14px; font-size: .85rem; color: #555; line-height: 1.6; background: #111; border: 1px solid #1e1e1e; border-radius: 8px; padding: 14px 16px; }
+    .note strong { color: #e8b84b; }
+
+    /* prompt side */
+    .prompt-side h2 { font-size: 1rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 14px; }
+    .prompt-box {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 24px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: .82rem;
+      line-height: 1.7;
+      color: #c9d1d9;
+      white-space: pre-wrap;
+      margin-bottom: 20px;
+    }
+    .prompt-box .placeholder { color: #58a6ff; font-style: italic; }
+    .copy-btn {
+      background: #e8b84b;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: .85rem;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: opacity .15s;
+    }
+    .copy-btn:hover { opacity: .85; }
+    .copy-btn.copied { background: #40a060; color: #fff; }
+
+    .steps { margin-top: 24px; }
+    .steps h3 { font-size: .85rem; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; }
+    .step { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+    .step-num { background: #1a1a2e; border: 1px solid #333; color: #e8b84b; font-weight: 700; font-size: .75rem; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .step-text { font-size: .87rem; color: #aaa; line-height: 1.5; }
+    .step-text code { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 4px; padding: 1px 6px; color: #79c0ff; font-family: monospace; font-size: .8rem; }
+
+    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<h1>VS Code + Claude — Live Demo</h1>
+<div class="sub">Pittsburgh Boot Camp · Day 1 · 1:00 PM · Implementation Block Opener</div>
+
+<div class="layout">
+
+  <!-- LEFT: INTRO VIDEO -->
+  <div class="video-side">
+    <h2>Intro Video — Play at 1:00 PM</h2>
+    <video controls>
+      <source src="build-something-real.mp4" type="video/mp4" />
+    </video>
+    <div class="note">
+      <strong>When it ends:</strong> Walk on screen and say —<br><br>
+      <em>"That's what the next 90 minutes looks like. Let's go."</em><br><br>
+      Then open VS Code. Ask for a volunteer.
+    </div>
+  </div>
+
+  <!-- RIGHT: LIVE PROMPT -->
+  <div class="prompt-side">
+    <h2>The Live Prompt — Copy & Paste</h2>
+    <div class="prompt-box" id="promptBox">Build me a single-page business website for <span class="placeholder">[Business Name]</span>.
+
+They are a <span class="placeholder">[what they do]</span> based in Pittsburgh.
+The main thing visitors should do is <span class="placeholder">[call / book / contact / buy]</span>.
+
+Make it:
+- Clean, modern, dark background
+- Mobile friendly
+- One clear headline that explains what they do
+- A short paragraph about the business
+- A big call-to-action button
+- Contact section with phone placeholder
+
+Save as index.html. Make it look professional.</div>
+    <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">Copy Prompt</button>
+
+    <div class="steps">
+      <h3>Run Order</h3>
+      <div class="step"><div class="step-num">1</div><div class="step-text">Ask room for a volunteer — get name, business, goal</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><code>mkdir [name] && cd [name]</code> in terminal</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Type <code>claude</code> — let the room hear it launch</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Paste the prompt. Read it out loud. Hit enter. Say nothing.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text"><code>open index.html</code> — full screen browser</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Turn to volunteer: <em>"Is that your business?"</em></div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function copyPrompt() {
+    const text = `Build me a single-page business website for [Business Name].
+
+They are a [what they do] based in Pittsburgh.
+The main thing visitors should do is [call / book / contact / buy].
+
+Make it:
+- Clean, modern, dark background
+- Mobile friendly
+- One clear headline that explains what they do
+- A short paragraph about the business
+- A big call-to-action button
+- Contact section with phone placeholder
+
+Save as index.html. Make it look professional.`;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy Prompt'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
