@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pittsburgh AI Boot Camp 2026 – The Verdict</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #080808;
+      --surface:  #111111;
+      --border:   #222222;
+      --platinum: #c8c8d0;
+      --gold:     #e8b84b;
+      --text:     #f0f0f0;
+      --muted:    #888888;
+      --accent:   #4f8ef7;
+      --green:    #40a060;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+    .btn {
+      display: inline-block;
+      padding: 18px 44px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: opacity .15s;
+      text-align: center;
+    }
+    .btn:hover { opacity: .88; }
+    .btn-primary { background: var(--gold); color: #000; }
+    .btn-outline { border: 2px solid var(--platinum); color: var(--platinum); }
+
+    /* ── BANNER ── */
+    .banner {
+      background: var(--gold);
+      color: #000;
+      text-align: center;
+      padding: 12px 24px;
+      font-weight: 700;
+      font-size: .9rem;
+      letter-spacing: .04em;
+    }
+    .banner a { color: #000; text-decoration: underline; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+      background: radial-gradient(ellipse 90% 60% at 50% 0%, #0d1220 0%, var(--bg) 70%);
+    }
+    .hero .eyebrow {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 99px;
+      background: rgba(232,184,75,.12);
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -.03em;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #e8b84b 0%, #f5d680 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero .sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 16px;
+    }
+    .hero .meta {
+      font-size: .88rem;
+      color: #555;
+      margin-bottom: 48px;
+    }
+    .hero .meta strong { color: #888; }
+
+    /* ── VIDEO BLOCK ── */
+    .video-block {
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid #2a2a2a;
+      box-shadow: 0 32px 80px rgba(0,0,0,.7);
+    }
+    .video-block video {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16/9;
+      background: #0a0a0a;
+    }
+
+    /* ── AFTER VIDEO ── */
+    .after-video {
+      padding: 64px 0 72px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .after-video .label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .after-video h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .after-video p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+    .after-video .price {
+      font-size: 3.2rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .after-video .price span { font-size: 1.6rem; }
+    .after-video .price-note {
+      font-size: .88rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    .after-video .disclaimer {
+      font-size: .8rem;
+      color: #444;
+      margin-top: 16px;
+    }
+
+    /* ── WHAT'S IN THE BOX ── */
+    .box-section {
+      background: var(--surface);
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+    }
+    .box-section h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .box-section .sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: .95rem;
+      margin-bottom: 48px;
+    }
+    .box-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .box-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: border-color .2s;
+    }
+    .box-item:hover { border-color: #333; }
+    .box-item .icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .box-item h4 {
+      font-size: .95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .box-item p {
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .box-total {
+      margin-top: 24px;
+      background: rgba(232,184,75,.06);
+      border: 1px solid rgba(232,184,75,.2);
+      border-radius: 8px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .box-total .label { font-size: .85rem; color: var(--muted); }
+    .box-total .value { font-size: 1.4rem; font-weight: 900; color: var(--gold); }
+    .box-total .yours { font-size: .85rem; color: var(--muted); }
+    .box-total .yours strong { color: var(--text); font-size: 1.1rem; }
+
+    /* ── URGENCY ── */
+    .urgency {
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+    }
+    .urgency-box {
+      background: #0c0a04;
+      border: 1px solid #2a2210;
+      border-radius: 10px;
+      padding: 48px;
+      text-align: center;
+    }
+    .urgency-box h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: -.02em;
+      margin-bottom: 12px;
+    }
+    .urgency-box p {
+      color: var(--muted);
+      font-size: .95rem;
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    /* ── LINKS ── */
+    .page-links {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .page-links p {
+      font-size: .88rem;
+      color: #555;
+      margin-bottom: 16px;
+    }
+    .page-links .link-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .page-links a {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--muted);
+      border-bottom: 1px solid #333;
+      padding-bottom: 2px;
+      transition: color .15s;
+    }
+    .page-links a:hover { color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+      font-size: .85rem;
+      color: #444;
+    }
+
+    @media (max-width: 600px) {
+      .box-grid { grid-template-columns: 1fr; }
+      .urgency-box { padding: 32px 20px; }
+      .box-total { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BANNER -->
+<div class="banner">
+  Pittsburgh Boot Camp · May 2026 · Pittsburgh, PA &nbsp;·&nbsp; <a href="event.html">View Full Event Details →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">Pittsburgh AI Boot Camp 2026</div>
+    <h1>The AI Audit &amp;<br /><em>Mac mini Bundle.</em></h1>
+    <p class="sub">One seat. Two days. A personalized AI audit, a Mac mini M4, and a roadmap that works Monday morning.</p>
+    <p class="meta"><strong>May 2026</strong> · Pittsburgh, PA · Limited Seats</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1060px;margin:0 auto;">
+      <div>
+        <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#666;margin-bottom:12px;text-align:center;">The Overview</div>
+        <div style="border-radius:12px;overflow:hidden;background:#000;border:1px solid #2a2a2a;box-shadow:0 24px 60px rgba(0,0,0,.6);">
+          <video controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:16/9;background:#0a0a0a;">
+            <source src="video/main-pitch.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#666;margin-bottom:12px;text-align:center;">The Bundle</div>
+        <div style="border-radius:12px;overflow:hidden;background:#000;border:1px solid #2a2a2a;box-shadow:0 24px 60px rgba(0,0,0,.6);">
+          <video controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:16/9;background:#0a0a0a;">
+            <source src="video/verdict.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AFTER VIDEO CTA -->
+<section class="after-video">
+  <div class="container">
+    <div class="label">Ready to Register</div>
+    <h2>Everything you need.<br />One price. One trip.</h2>
+    <p>Two days in Pittsburgh. You leave with a plan, a computer, and a system built around your business. Not theory. Not homework. Done.</p>
+    <div class="price"><span>$</span>1,995</div>
+    <div class="price-note">one-time · all-inclusive · AI Audit + Mac mini M4 + Boot Camp</div>
+    <a href="event.html" class="btn btn-primary">Claim Your Seat →</a>
+    <div class="disclaimer">Seats are limited · May 2026 · Pittsburgh, PA · Audit slots assigned first-come</div>
+  </div>
+</section>
+
+<!-- WHAT'S IN THE BOX -->
+<section class="box-section">
+  <div class="container">
+    <h2>What's in the bundle.</h2>
+    <p class="sub">Everything that comes with your Pittsburgh Boot Camp seat — no upsells, no add-ons.</p>
+    <div class="box-grid">
+      <div class="box-item">
+        <div class="icon">🖥️</div>
+        <div>
+          <h4>Mac mini M4</h4>
+          <p>Every in-person attendee receives one. Pre-configured, ready to run your AI stack the day you get home.</p>
+        </div>
+      </div>
+      <div class="box-item">
+        <div class="icon">🔍</div>
+        <div>
+          <h4>Personalized AI Audit</h4>
+          <p>A 90-minute deep dive into your specific business. Workflow map, opportunity analysis, and a prioritized roadmap built for you.</p>
+        </div>
+      </div>
+      <div class="box-item">
+        <div class="icon">📋</div>
+        <div>
+          <h4>Implementation Roadmap</h4>
+          <p>A sequenced, prioritized action plan. Quick wins first, bigger builds second. Ready to execute week one.</p>
+        </div>
+      </div>
+      <div class="box-item">
+        <div class="icon">🛠️</div>
+        <div>
+          <h4>Custom Tool Stack</h4>
+          <p>The exact AI tools that fit your business and budget — curated, not generic. No bloat.</p>
+        </div>
+      </div>
+      <div class="box-item">
+        <div class="icon">📄</div>
+        <div>
+          <h4>Written Audit Report</h4>
+          <p>Everything documented and delivered as a clean PDF you can reference, share, or hand to an implementer.</p>
+        </div>
+      </div>
+      <div class="box-item">
+        <div class="icon">📞</div>
+        <div>
+          <h4>30-Day Follow-Up Call</h4>
+          <p>One month after the event — check in, troubleshoot blockers, adjust the plan. Keeps the momentum alive.</p>
+        </div>
+      </div>
+      <div class="box-item">
+        <div class="icon">🎤</div>
+        <div>
+          <h4>Two Days of Expert Content</h4>
+          <p>Day 1: keynote, expert speakers, live implementation workshop. Day 2: panel, open Q&amp;A, hot seats, 90-day planning.</p>
+        </div>
+      </div>
+      <div class="box-item">
+        <div class="icon">🏆</div>
+        <div>
+          <h4>Synology NAS Giveaway</h4>
+          <p>One attendee wins a brand new Synology NAS — drawn live on Day 2. You have to be present to win.</p>
+        </div>
+      </div>
+    </div>
+    <div class="box-total">
+      <div>
+        <div class="label">Total consultant value</div>
+        <div class="value">$3,300+</div>
+      </div>
+      <div>
+        <div class="yours">Your price today</div>
+        <div><strong>$1,995</strong></div>
+      </div>
+      <a href="event.html" class="btn btn-primary">Register Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY -->
+<section class="urgency">
+  <div class="container">
+    <div class="urgency-box">
+      <h2>Seats are limited by design.</h2>
+      <p>This isn't a ballroom event. Every attendee gets a personalized audit — and that takes time. When the seats fill, they're gone. No waitlist. No virtual substitute for the in-person experience.</p>
+      <a href="event.html" class="btn btn-primary">Secure Your Seat →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE LINKS -->
+<section class="page-links">
+  <div class="container">
+    <p>Want to learn more before you decide?</p>
+    <div class="link-row">
+      <a href="ai-audit.html">About the AI Audit →</a>
+      <a href="event.html">Full Event Details →</a>
+      <a href="index.html">Platinum Membership →</a>
+      <a href="commercials.html">Watch the Spots →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Pittsburgh Boot Camp &copy; 2026 · <a href="https://dmpgh.com" style="color:#555">dmpgh.com</a></p>
+  </div>
+</footer>
+
+<!-- DOUG BUG -->
+<style>
+  .db-wrap { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; align-items:flex-end; gap:12px; }
+  .db-bug { width:58px; height:58px; background:#e74c3c; border-radius:50%; border:3px solid #222; cursor:pointer; position:relative; transition:transform .25s,box-shadow .25s; flex-shrink:0; }
+  .db-bug:hover { transform:scale(1.12); box-shadow:0 8px 24px rgba(231,76,60,.55); }
+  .db-bug.db-active { animation:db-pulse 1s ease-in-out infinite; }
+  @keyframes db-pulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.1)} }
+  .db-bug::before { content:''; position:absolute; top:-14px; left:50%; transform:translateX(-50%); width:28px; height:20px; background:#222; border-radius:50%; }
+  .db-s { position:absolute; background:#222; border-radius:50%; }
+  .db-s1{width:10px;height:10px;top:14px;left:18px}
+  .db-s2{width:13px;height:13px;top:22px;right:12px}
+  .db-s3{width:9px;height:9px;bottom:16px;left:15px}
+  .db-s4{width:11px;height:11px;bottom:12px;right:16px}
+  .db-panel { display:none; background:#111; border:1px solid #2a2a2a; border-radius:12px; padding:20px; width:280px; box-shadow:0 16px 48px rgba(0,0,0,.7); }
+  .db-panel.db-show { display:block; animation:db-slide .3s ease; }
+  @keyframes db-slide { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  .db-panel h4 { color:#f0f0f0; font-size:.9rem; font-weight:700; margin-bottom:14px; font-family:'Inter',sans-serif; }
+  .db-panel label { display:block; font-size:.72rem; font-weight:600; color:#888; margin-bottom:4px; margin-top:10px; font-family:'Inter',sans-serif; text-transform:uppercase; letter-spacing:.06em; }
+  .db-panel input, .db-panel textarea, .db-panel select { width:100%; background:#1a1a1a; border:1px solid #2a2a2a; border-radius:6px; padding:9px 10px; color:#f0f0f0; font-size:.85rem; font-family:'Inter',sans-serif; }
+  .db-panel input:focus, .db-panel textarea:focus, .db-panel select:focus { outline:none; border-color:#e8b84b; }
+  .db-panel select option { background:#1a1a1a; }
+  .db-btn { width:100%; margin-top:14px; padding:11px; background:#e8b84b; color:#000; border:none; border-radius:6px; font-weight:700; font-size:.88rem; cursor:pointer; font-family:'Inter',sans-serif; transition:opacity .15s; }
+  .db-btn:hover { opacity:.88; }
+  .db-btn:disabled { opacity:.45; cursor:not-allowed; }
+  .db-ok { margin-top:12px; padding:10px; background:rgba(64,160,96,.15); border:1px solid rgba(64,160,96,.3); border-radius:6px; color:#40a060; font-size:.8rem; font-family:'Inter',sans-serif; display:none; }
+  .db-err { margin-top:12px; padding:10px; background:rgba(231,76,60,.12); border:1px solid rgba(231,76,60,.3); border-radius:6px; color:#e74c3c; font-size:.8rem; font-family:'Inter',sans-serif; display:none; }
+</style>
+<div class="db-wrap">
+  <div class="db-panel" id="dbPanel">
+    <h4>🐞 Bug Doug</h4>
+    <label>Your Name</label>
+    <input type="text" id="dbName" placeholder="Who's bugging Doug?" />
+    <label>What do you need?</label>
+    <textarea id="dbReason" rows="2" placeholder="Quick message..."></textarea>
+    <label>Best way to reach you</label>
+    <select id="dbMethod">
+      <option value="email">Email</option>
+      <option value="text">Text</option>
+      <option value="phone">Phone Call</option>
+    </select>
+    <label>Email</label>
+    <input type="email" id="dbEmail" placeholder="you@example.com" />
+    <label>Phone</label>
+    <input type="tel" id="dbPhone" placeholder="(412) 555-0100" />
+    <button class="db-btn" id="dbBtn" onclick="dbSend()">🐞 Bug Doug Now!</button>
+    <div class="db-ok" id="dbOk"></div>
+    <div class="db-err" id="dbErr"></div>
+  </div>
+  <div class="db-bug" id="dbBug" onclick="dbToggle()">
+    <div class="db-s db-s1"></div>
+    <div class="db-s db-s2"></div>
+    <div class="db-s db-s3"></div>
+    <div class="db-s db-s4"></div>
+  </div>
+</div>
+<script>
+  function dbToggle(){
+    var p=document.getElementById('dbPanel'), b=document.getElementById('dbBug');
+    var open=p.classList.toggle('db-show');
+    b.classList.toggle('db-active', open);
+  }
+  async function dbSend(){
+    var name=document.getElementById('dbName').value.trim();
+    var reason=document.getElementById('dbReason').value.trim();
+    var method=document.getElementById('dbMethod').value;
+    var email=document.getElementById('dbEmail').value.trim();
+    var phone=document.getElementById('dbPhone').value.trim();
+    var btn=document.getElementById('dbBtn');
+    var ok=document.getElementById('dbOk');
+    var err=document.getElementById('dbErr');
+    ok.style.display='none'; err.style.display='none';
+    if(!name||!reason){err.style.display='block';err.textContent='Name and message required.';return;}
+    btn.disabled=true; btn.textContent='Sending...';
+    try{
+      var r=await fetch('https://dougbug.com/bug.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,reason,contactMethod:method,email,phone})});
+      var d=await r.json();
+      if(d.success){
+        ok.style.display='block'; ok.textContent='✅ Doug has been bugged! He\'ll reach out via '+method+'.';
+        btn.style.display='none';
+      } else {
+        err.style.display='block'; err.textContent='Something went wrong. Try again.';
+        btn.disabled=false; btn.textContent='🐞 Bug Doug Now!';
+      }
+    } catch(e){
+      err.style.display='block'; err.textContent='Connection error. Try again.';
+      btn.disabled=false; btn.textContent='🐞 Bug Doug Now!';
+    }
+  }
+</script>
+
+</body>
+</html>
